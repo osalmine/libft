@@ -10,3 +10,5 @@ make
 to compile the library.
 
 See **[subject](libft.en.pdf)** for details.
+
+ft_lstmap doesn't pass moulinette for some reason, but haven't had time to fix it.
