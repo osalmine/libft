@@ -20,12 +20,14 @@ t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 	start = NULL;
 	if (lst)
 	{
-		if (!(start = f(ft_lstnew(lst->content, lst->content_size))))
+		start = f(ft_lstnew(lst->content, lst->content_size));
+		if (!start)	
 			return (NULL);
 		elem = start;
 		while ((lst = lst->next))
 		{
-			if (!(elem->next = f(ft_lstnew(lst->content, lst->content_size))))
+			elem->next = f(ft_lstnew(lst->content, lst->content_size));
+			if (!elem->next)
 				return (NULL);
 			elem = elem->next;
 		}
