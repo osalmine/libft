@@ -6,7 +6,7 @@
 #    By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/24 14:46:14 by osalmine          #+#    #+#              #
-#    Updated: 2019/11/05 13:56:38 by osalmine         ###   ########.fr        #
+#    Updated: 2020/02/05 12:15:26 by osalmine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,35 +23,36 @@ SOURCE = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 		 ft_strncat.c ft_strncmp.c ft_strncpy.c ft_strnequ.c ft_strnew.c \
 		 ft_strnstr.c ft_strrchr.c ft_strsplit.c ft_strstr.c ft_strsub.c \
 		 ft_strtrim.c ft_tolower.c ft_toupper.c ft_isblank.c ft_islower.c \
-		 ft_isupper.c ft_words.c ft_nbs.c
-OBJ = ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o \
-	  ft_isprint.o ft_itoa.o ft_lstadd.o ft_lstdel.o ft_lstdelone.o \
-	  ft_lstiter.o ft_lstmap.o ft_lstnew.o ft_memalloc.o ft_memccpy.o \
-	  ft_memchr.o ft_memcmp.o ft_memcpy.o ft_memdel.o ft_memmove.o \
-	  ft_memset.o ft_putchar.o ft_putchar_fd.o ft_putendl.o ft_putendl_fd.o \
-	  ft_putnbr.o ft_putnbr_fd.o ft_putstr.o ft_putstr_fd.o ft_strcat.o \
-	  ft_strchr.o ft_strclr.o ft_strcmp.o ft_strcpy.o ft_strdel.o ft_strdup.o \
-	  ft_strequ.o ft_striter.o ft_striteri.o ft_strjoin.o ft_strlcat.o \
-	  ft_strlen.o ft_strmap.o ft_strmapi.o ft_strncat.o ft_strncmp.o \
-	  ft_strncpy.o ft_strnequ.o ft_strnew.o ft_strnstr.o ft_strrchr.o \
-	  ft_strsplit.o ft_strstr.o ft_strsub.o ft_strtrim.o ft_tolower.o ft_toupper.o \
-	  ft_isblank.o ft_islower.o ft_isupper.o ft_words.o ft_nbs.o
+		 ft_isupper.c ft_words.c ft_nbs.c ft_strchri.c ft_dtoa.c ft_abs.c \
+		 ft_itoa_base.c get_next_line.c
+OBJ = $(SOURCE:%.c=%.o)
 INCLUDE = libft.h
 FLAGS = -Wall -Werror -Wextra
+
+PRINTF_DIR = ft_printf/
+PRINTF_LIB = libftprintf.a
 
 all: $(NAME)
 
 $(NAME): $(INCLUDE) $(SOURCE)
-	gcc $(FLAGS) -I$(INCLUDE) -c $(SOURCE)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@gcc $(FLAGS) -I$(INCLUDE) -c $(SOURCE)
+	@make -C $(PRINTF_DIR)
+	@cp $(PRINTF_DIR)$(PRINTF_LIB) $(NAME)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "Compiled $(NAME)"
 
 clean:
-	/bin/rm -f $(OBJ)
+	@make -C $(PRINTF_DIR) clean
+	@rm -f $(OBJ)
+	@echo "Cleaned obj files"
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@make -C $(PRINTF_DIR) fclean
+	@rm -f $(NAME)
+	@echo "Cleaned $(NAME)"
 
 re: fclean all
+	@make -C $(PRINTF_DIR) re
 
 .PHONY: all clean fclean re
