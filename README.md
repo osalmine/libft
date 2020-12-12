@@ -1,6 +1,10 @@
 # libft
 Hive's libft project
 
+Grade:
+
+![libft grade](https://badge42.herokuapp.com/api/project/osalmine/Libft)
+
 The aim of this project was to code a C library. It includes standard functions from libc and additional functions.
 
 Usage:
