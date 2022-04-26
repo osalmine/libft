@@ -3,7 +3,7 @@ Hive's libft project
 
 Grade:
 
-![libft grade](https://badge42.herokuapp.com/api/project/osalmine/Libft)
+[![osalmine's Libft Score](https://badge42.vercel.app/api/v2/cl2gijtz7003009mofz5pnp5t/project/1608072)](https://github.com/JaeSeoKim/badge42)
 
 The aim of this project was to code a C library. It includes standard functions from libc and additional functions.
 
